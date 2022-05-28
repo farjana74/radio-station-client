@@ -1,0 +1,19 @@
+.moreShowCard-title {
+    color: black;
+}
+
+
+.moreShowCard-title:hover {
+    color: tomato !important;
+
+}
+
+.explore-title {
+    font-weight: 800px;
+    font-size: 2rem;
+    color: tomato;
+}
+
+.views-time {
+    color: tomato;
+}

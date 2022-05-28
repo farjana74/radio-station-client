@@ -1,0 +1,15 @@
+.logo {
+    width: 100%;
+    height: 60vh;
+}
+
+.google-button {
+    padding: 4px 20px;
+    border-radius: 35px;
+    color: white;
+    border: 2px solid #cf2e2e;
+    background-color: #cf2e2e;
+
+
+
+}

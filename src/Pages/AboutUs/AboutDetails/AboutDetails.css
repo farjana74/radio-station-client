@@ -1,0 +1,33 @@
+.about-title {
+    color: tomato;
+}
+
+.about-title-first {
+    font-weight: 800px;
+}
+
+.team-lead {
+    font-weight: 800px;
+}
+
+.team-lead-details {
+    font-size: 20px;
+}
+
+.show-time {
+    color: tomato;
+}
+
+.team-picture {}
+
+.team-picture:hover {
+    border-radius: 50%;
+    transition: all .5s;
+    /* border: 1px solid white; */
+    /* box-shadow: 5px 10px; */
+
+}
+
+.brand-bg {
+    background-color: rgb(176, 228, 211);
+}
