@@ -1,14 +1,16 @@
+import './ShowCreate.css';
+
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import "./ShowCreate.css";
+
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
 const ShowCreate = () => {
 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         // console.log(data);
-        axios.post('http://localhost:5000/services', data)
+        axios.post('https://young-gorge-80259.herokuapp.com/order', data)
             .then(res => {
                 console.log(res)
                 if (res.data) {
@@ -32,19 +34,19 @@ const ShowCreate = () => {
                     <form className="row g-3" onSubmit={handleSubmit(onSubmit)} >
                         <div className="col-md-6 col">
                             <div className="form-floating ">
-                                <input type="text" className="form-control" id="showName" placeholder="showName" required
+                                <input type="text" className="form-control" id="customerName" placeholder="customerName" required
                                     {...register("name")}
                                 />
-                                <label htmlFor="showName">Shows Title</label>
+                                <label htmlFor="customerName">Customer Name</label>
                             </div>
                         </div>
                         <div className="col-md-6">
 
                             <div className="form-floating ">
-                                <input type="text" className="form-control" id="rj_name" placeholder="rj_name" required
-                                    {...register("rj_name")}
+                                <input type="text" className="form-control" id="email" placeholder="email" required
+                                    {...register("email")}
                                 />
-                                <label htmlFor="rj_name">Rj Name</label>
+                                <label htmlFor="email">Customer Email</label>
                             </div>
                         </div>
                         {/* <div className="col-md-6">
@@ -56,53 +58,37 @@ const ShowCreate = () => {
                         </div> */}
                         <div className="col-md-12">
                             <div className="form-floating ">
-                                <input className="form-control" id="time" placeholder="time" required
-                                    {...register("time")}
+                                <input className="form-control" id="address" placeholder="address" required
+                                    {...register("address")}
                                 />
-                                <label htmlFor="time">Event Time</label>
+                                <label htmlFor="address">Customer Adress</label>
                             </div>
                         </div>
-                        <div className="col-md-12">
+                        {/* <div className="col-md-12">
                             <div className="form-floating ">
                                 <input className="form-control" id="img" placeholder="Event Image" required
                                     {...register("img")}
                                 />
                                 <label htmlFor="img">Event image Url</label>
                             </div>
+                        </div> */}
+                        <div className="col-md-12">
+                            <div className="form-floating ">
+                                <input className="form-control" id="price" placeholder="price" required
+                                    {...register("price")}
+                                />
+                                <label htmlFor="price">Product Price</label>
+                            </div>
                         </div>
                         <div className="col-md-12">
                             <div className="form-floating ">
-                                <input className="form-control" id="duration" placeholder="duration" required
-                                    {...register("duration")}
+                                <input type="number" className="form-control" id="phone" placeholder="phone" required
+                                    {...register("phone")}
                                 />
-                                <label htmlFor="duration">Event Duration</label>
+                                <label htmlFor="phone">Phone</label>
                             </div>
                         </div>
-                        <div className="col-md-12">
-                            <div className="form-floating ">
-                                <input type="number" className="form-control" id="views" placeholder="views" required
-                                    {...register("views")}
-                                />
-                                <label htmlFor="views">Total Views</label>
-                            </div>
-                        </div>
-                        {/* <div className="col-md-12">
-                            <div className="form-floating ">
-                                <input type="number" className="form-control" id="views" placeholder="views" required
-                                    {...register("views")}
-                                />
-                                <label htmlFor="views">Total Views</label>
-                            </div>
-                        </div> */}
-                        {/* <div className="col-md-12 border">
-                            <div className="form-floating ">
-                                <textarea type="text" className="form-control border-0" id="message" placeholder="message" required
-                                    {...register("message")}
-                                    style={{ height: "120px" }}
-                                />
-                                <label htmlFor="message">Event Description</label>
-                            </div>
-                        </div> */}
+
 
 
                         <div className="col-12 text-center ">

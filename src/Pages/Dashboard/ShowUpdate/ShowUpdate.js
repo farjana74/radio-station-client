@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
-import axios from 'axios';
 
 const ShowUpdate = () => {
     const { register, handleSubmit, reset } = useForm();
     const { showId } = useParams()
+    console.log(showId)
     const [updateShow, setUpdateShow] = useState({})
 
     const handleNameChange = e => {
@@ -13,60 +17,56 @@ const ShowUpdate = () => {
         const updateName = e.target.value;
         console.log(updateName);
         const UpdateNameChange = {
-            name: updateName, rj_name: updateShow.rj_name, time: updateShow.time, img: updateShow.img, duration: updateShow.duration, views: updateShow.views
+            name: updateName, email: updateShow.email, address: updateShow.address, price: updateShow.price, phone: updateShow.phone
         };
         setUpdateShow(UpdateNameChange);
+        console.log(UpdateNameChange)
     }
 
-    const handleRjNameChange = e => {
-        const updateRjName = e.target.value;
-        const UpdateRjUser = {
-            rj_name: updateRjName, name: updateShow.name, time: updateShow.time, img: updateShow.img, duration: updateShow.duration, views: updateShow.views
+    const handleEmail = e => {
+        const updateEmail = e.target.value;
+        const UpdateEmailUser = {
+            email: updateEmail, name: updateShow.name, address: updateShow.address, price: updateShow.price, phone: updateShow.phone
         };
-        setUpdateShow(UpdateRjUser);
+        setUpdateShow(UpdateEmailUser);
     }
-    const handleTimeChange = e => {
-        const updateTime = e.target.value;
-        const UpdateUserTime = {
-            name: updateShow.name, rj_name: updateShow.rj_name, time: updateTime, img: updateShow.img, duration: updateShow.duration, views: updateShow.views
+    const handleAdressChange = e => {
+        const updateAdress = e.target.value;
+        const UpdateUserAdress = {
+            address: updateAdress, email: updateShow.email, name: updateShow.name, price: updateShow.price, phone: updateShow.phone
         };
-        setUpdateShow(UpdateUserTime);
+        setUpdateShow(UpdateUserAdress);
     }
-    const handleImage = e => {
-        const updateImage = e.target.value;
-        const UpdateUserImage = {
-            name: updateShow.name, rj_name: updateShow.rj_name, time: updateShow.time, img: updateImage, duration: updateShow.duration, views: updateShow.views
+
+    const handlePrice = e => {
+        const updatePrice = e.target.value;
+        const UpdateUserPrice = {
+            price: updatePrice, email: updateShow.email, name: updateShow.name, address: updateShow.address, phone: updateShow.phone
         };
-        setUpdateShow(UpdateUserImage);
+        setUpdateShow(UpdateUserPrice);
     }
-    const handleDurationChange = e => {
-        const updateDuration = e.target.value;
-        const UpdateUserDuration = {
-            name: updateShow.name, rj_name: updateShow.rj_name, time: updateShow.time, img: updateShow.img, duration: updateDuration, views: updateShow.views
+    const handlePhoneNumber = e => {
+        const updatePhone = e.target.value;
+        const UpdateUserPhone = {
+            phone: updatePhone, price: updateShow.price, email: updateShow.email, name: updateShow.name, address: updateShow.address
         };
-        setUpdateShow(UpdateUserDuration);
-    }
-    const handleViewsChange = e => {
-        const updateViews = e.target.value;
-        const UpdateUserView = {
-            name: updateShow.name, rj_name: updateShow.rj_name, time: updateShow.time, img: updateShow.img, duration: updateShow.duration, views: updateViews
-        };
-        setUpdateShow(UpdateUserView);
+        setUpdateShow(UpdateUserPhone);
     }
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/services/${showId
+        const url = `https://young-gorge-80259.herokuapp.com/order/${showId
             }`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUpdateShow(data))
 
+
     }, [])
 
 
     const handleUpdateChange = (e) => {
-        const url = `http://localhost:5000/services/${showId}`;
+        const url = `https://young-gorge-80259.herokuapp.com/order/${showId}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -100,52 +100,45 @@ const ShowUpdate = () => {
                     <form className="row g-3" onSubmit={handleUpdateChange}  >
                         <div className="col-md-6 col">
                             <div className="form-floating  ">
-                                <input type="text" className="form-control" onChange={handleNameChange} value={updateShow.name || ''} placeholder="showName"
+                                <input type="text" className="form-control" onChange={handleNameChange} value={updateShow.name || ''} placeholder="customerName"
 
                                 />
-                                <label htmlFor="showName">Shows Title</label>
+                                <label htmlFor="customerName">Customer Name</label>
                             </div>
                         </div>
                         <div className="col-md-6">
 
                             <div className="form-floating ">
-                                <input type="text" className="form-control" onChange={handleRjNameChange} value={updateShow.rj_name || ''} id="rj_name" placeholder="rj_name" required
+                                <input type="text" className="form-control" onChange={handleEmail} value={updateShow.email || ''} id="email" placeholder="email" required
 
                                 />
-                                <label htmlFor="rj_name">Rj Name</label>
+                                <label htmlFor="email">Customer Email</label>
                             </div>
                         </div>
 
                         <div className="col-md-12">
                             <div className="form-floating ">
-                                <input className="form-control" onChange={handleTimeChange} value={updateShow.time || ''} id="time" placeholder="time" required
+                                <input className="form-control" onChange={handleAdressChange} value={updateShow.address || ''} id="address" placeholder="address" required
 
                                 />
-                                <label htmlFor="time">Event Time</label>
+                                <label htmlFor="address"> Customer Address</label>
+                            </div>
+                        </div>
+
+                        <div className="col-md-12">
+                            <div className="form-floating ">
+                                <input className="form-control" id="price" onChange={handlePrice} value={updateShow.price || ''} placeholder="Price" required
+
+                                />
+                                <label htmlFor="price"> Product Price</label>
                             </div>
                         </div>
                         <div className="col-md-12">
                             <div className="form-floating ">
-                                <input className="form-control" id="img" onChange={handleImage} value={updateShow.img || ''} placeholder="Event Image" required
+                                <input type="number" className="form-control" onChange={handlePhoneNumber} value={updateShow.phone || ''} id="phone" placeholder="phone" required
 
                                 />
-                                <label htmlFor="img">Event image Url</label>
-                            </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="form-floating ">
-                                <input className="form-control" id="duration" onChange={handleDurationChange} value={updateShow.duration || ''} placeholder="duration" required
-
-                                />
-                                <label htmlFor="duration">Event Duration</label>
-                            </div>
-                        </div>
-                        <div className="col-md-12">
-                            <div className="form-floating ">
-                                <input type="number" className="form-control" onChange={handleViewsChange} value={updateShow.views || ''} id="views" placeholder="views" required
-
-                                />
-                                <label htmlFor="views">Total Views</label>
+                                <label htmlFor="phone">Phone</label>
                             </div>
                         </div>
 
